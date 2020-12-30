@@ -17,6 +17,7 @@ export default function Home({ file, preview }) {
     fields: [{ name: 'title', component: 'text' }],
   }
 
+  console.log(file)
   /*
    ** Register a JSON Tina Form
    */
@@ -237,11 +238,10 @@ export default function Home({ file, preview }) {
 /*
  ** Fetch data with getStaticProps based on 'preview' mode
  */
-export const getStaticProps: GetStaticProps = async function ({
+export async function getStaticProps ({
   preview,
   previewData,
-}) {
-  if (preview) {
+}) {if (preview) {
     return getGithubPreviewProps({
       ...previewData,
       fileRelativePath: 'content/home.json',

@@ -47,7 +47,6 @@ class Site extends App{
 
   render() {
     const { Component, pageProps, router } = this.props
-    console.log(this.props.router)
     return (
       /**
        * 5. Wrap the page Component with the Tina and Github providers
