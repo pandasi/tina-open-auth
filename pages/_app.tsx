@@ -5,8 +5,9 @@ import {
   GithubMediaStore,
   TinacmsGithubProvider,
 } from 'react-tinacms-github'
+import { withRouter } from 'next/router'
 
-export default class Site extends App {
+class Site extends App{
   cms: TinaCMS
 
   constructor(props) {
@@ -42,8 +43,11 @@ export default class Site extends App {
     })
   }
 
+  
+
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, router } = this.props
+    console.log(this.props.router)
     return (
       /**
        * 5. Wrap the page Component with the Tina and Github providers
@@ -57,13 +61,15 @@ export default class Site extends App {
           {/**
            * 6. Add a button for entering Preview/Edit Mode
            */}
-          <EditLink cms={this.cms} />
+          {router.pathname == '/overview' && <EditLink cms={this.cms} />}
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
     )
   }
 }
+
+export default withRouter(Site)
 
 const onLogin = async () => {
   const token = localStorage.getItem('tinacms-github-token') || null

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 /*
  ** Import helpers and GetStaticProps type
  */
@@ -41,6 +42,9 @@ export default function Home({ file, preview }) {
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
+          <Link href="/overview">
+            <a>Go to the overview page</a>
+          </Link>
         </p>
 
         <div className="grid">
