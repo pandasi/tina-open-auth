@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 
 export default function Overview(){
     return(
@@ -16,9 +17,11 @@ export const getStaticProps = async function ({
   }) {
     if (preview) {
       return {
-          props: {
-              preview: true
-          }
+          getGithubPreviewProps({
+            ...previewData,
+            fileRelativePath = 'content/admin.json',
+            parseJson: parseJson
+          })
       }
     }
     return {
